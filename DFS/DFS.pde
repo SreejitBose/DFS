@@ -1,4 +1,4 @@
-points pa[]=new points[7];
+points pa[]=new points[5];
 
 int n=pa.length;
 adjMat mat=new adjMat(n);
@@ -44,16 +44,20 @@ void setup(){
 void draw(){
   delay(2000);
   if(q.tos!=-1){
-    int h=q.deQ();
-    pa[h].co='r';
-    pa[h].turnRed();
+    int h=q.tos;
+    int flag=0;
     for(int y=0;y<n;y++){
       if(mat.arr[h][y]==1 && pa[y].co=='w'){
-      
+      flag=1;
        q.enQ(y);
       pa[y].co='b';
        pa[y].turnBlue();
       }
+    }
+    if(flag==0){
+    pa[h].co='r';
+    pa[h].turnRed();
+    h=q.deQ();
     }
   }
   
